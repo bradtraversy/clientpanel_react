@@ -13,6 +13,21 @@ class ClientDetails extends Component {
     balanceUpdateAmount: ''
   };
 
+  // Update balance
+  balanceSubmit = e => {
+    e.preventDefault();
+
+    const { client, firestore } = this.props;
+    const { balanceUpdateAmount } = this.state;
+
+    const clientUpdate = {
+      balance: parseFloat(balanceUpdateAmount)
+    };
+
+    // Update in firestore
+    firestore.update({ collection: 'clients', doc: client.id }, clientUpdate);
+  };
+
   // Delete client
   onDeleteClick = () => {
     const { client, firestore, history } = this.props;
@@ -26,20 +41,20 @@ class ClientDetails extends Component {
 
   render() {
     const { client } = this.props;
-    const { showBalanceUpdate } = this.state;
+    const { showBalanceUpdate, balanceUpdateAmount } = this.state;
 
     let balanceForm = '';
     // If balance form should display
     if (showBalanceUpdate) {
       balanceForm = (
-        <form>
+        <form onSubmit={this.balanceSubmit}>
           <div className="input-group">
             <input
               type="text"
               className="form-control"
               name="balanceUpdateAmount"
               placeholder="Add New Balance"
-              value="0"
+              value={balanceUpdateAmount}
               onChange={this.onChange}
             />
             <div className="input-group-append">
