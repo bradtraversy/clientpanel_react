@@ -6,7 +6,7 @@
     "classnames": "^2.2.6",
     "firebase": "^5.3.0",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-redux-firebase": "^2.1.6",
     "react-router-dom": "^4.3.1",
