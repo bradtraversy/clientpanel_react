@@ -12,7 +12,7 @@ class Login extends Component {
     password: ''
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { allowRegistration } = this.props.settings;
 
     if (!allowRegistration) {
